@@ -1,0 +1,13 @@
+{% extends 'ex00/base.html' %}
+{% load bootstrap5 %}
+{% block title %}Registration{% endblock %}
+{% block header %}Sign up{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+         {% bootstrap_form form_reg %}
+        <button type="submit" class="btn btn-primary"> SIGN IN</button>
+    </form>
+{% endblock %}
+
+

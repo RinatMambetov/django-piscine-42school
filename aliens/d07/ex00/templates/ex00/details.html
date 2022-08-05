@@ -1,0 +1,36 @@
+{% extends 'ex00/base.html' %}
+{% load bootstrap5 %}
+{% block title %}Details{% endblock %}
+{% block header %}Details{% endblock %}
+{% block content %}
+
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Synopsis</th>
+          <th scope="col">Writer</th>
+          <th scope="col">Created</th>
+          <th scope="col">When</th>
+          <th scope="col">Content</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr>
+                <td>{{ article.title }}</td>
+                <td>{{ article.synopsis }}</td>
+                <td>{{ article.author }}</td>
+                <td>{{ article.created }}</td>
+                <td>{{ article.created|timesince }}</td>
+                <td>{{ article.content }}</td>
+                <td>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-primary" type="submit" name="add" value="{{ article.id }}">Add to favorite</button>
+                    </form>
+                </td>
+
+            </tr>
+      </tbody>
+    </table>
+{% endblock %}

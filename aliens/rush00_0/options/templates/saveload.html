@@ -1,0 +1,26 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% block title %}Moviemon{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'saveload.css' %}">{% endblock %}
+{% block content %}
+    <ul class="slots-container">
+    {% for slot in slots %}
+        <li class="slot-item">
+        <div class="slot-name"
+             {% if forloop.counter0 == game_data.slot_position %}
+             style="color: #3d38b5"
+             {% endif %} >
+            {{ slot.0 }}: {{ slot.1 }}
+        </div>
+        </li>
+    {% endfor %}
+<li class="footer">
+                <table width="90%">
+                    <tr>
+                        <td><b>A</b> - {{ a_button }}</td>
+                        <td><b>B</b> - cancel</td>
+                    </tr>
+                </table>
+            </li>
+    </ul>
+{% endblock %}

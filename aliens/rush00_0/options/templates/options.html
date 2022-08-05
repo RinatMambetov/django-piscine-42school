@@ -1,0 +1,16 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% block title %}Moviemon{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'options.css' %}">{% endblock %}
+{% block content %}
+    <table class="display">
+        <tr><td>Save [A]</td></tr>
+        <tr><td>Quit [B]</td></tr>
+        <tr><td>Cancel [Start]</td></tr>
+        <tr><td>[A] - N on keyboard</td></tr>
+        <tr><td>[B] - M on keyboard</td></tr>
+        <tr><td>[SELECT] - O on keyboard</td></tr>
+        <tr><td>[START] - P on keyboard</td></tr>
+        <tr><td>Movement - arrows / wasd</td></tr>
+    </table>
+{% endblock %}

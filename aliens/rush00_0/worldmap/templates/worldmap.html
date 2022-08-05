@@ -1,0 +1,40 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% block title %}Worldmap{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'worldmap.css' %}">
+{% endblock %}
+{% block content %}
+    <div style="display: flex">
+    <table class="map">
+    {% for row in frame %}
+        <tr>
+        {% for el in row %}
+            {% if el == 0 %}
+                <td ></td>
+            {% elif el == 1 or el == 2 %}
+                <td class="bushes"></td>
+            {% endif %}
+            {% if el == -1 %}
+                {% if game_data.move_right %}
+                    <td class="movieman"></td>
+                {% else %}
+                    <td class="movieman" style="transform: scaleX(-1);"></td>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+    <div style="margin:auto; border-collapse: collapse; width: 40%; height: 100%">
+        <p>MovieBalls:</p><p>{{ game_data.player_movieballs }}</p>
+        <p>MovieMons:</p><p>{{ game_data.captured_moviemon_ids | length }} / {{ game_data.movie_info | length }}</p>
+        {% if game_data.state.value == 9 %}
+            <p style="color: red"> Movie ball found!
+                Press [A] to continue </p>
+        {%  elif game_data.state.value == 2 %}
+            <p style="color: red"> Moviemon found! Prepare to battle! Press [A] to continue </p>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}

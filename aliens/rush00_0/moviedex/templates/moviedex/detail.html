@@ -1,0 +1,47 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+
+{% block title %}Moviedex/{{ movie_id }}{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'moviedex/moviedex-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<ul class="detail-container">
+<li class="detail-poster">
+    <img class="poster"
+     align="left"
+     src="{{ movie.poster_url}}"
+     alt="{{ movie.title }}"
+     height="100%"
+    >
+    <div class="movie-title">
+    {{ movie.title }} ({{ movie.year }})
+    </div>
+    <div class="movie-title">
+    IMDb: {{ movie.rating }}
+    </div>
+    <div class="movie-persons">
+    Director: {{ movie.director }}
+    </div>
+    <div class="movie-persons">
+    Actors: {{ movie.actors }}
+    </div>
+{#TODO moveidex:detail#}
+</li>
+<li class="movie-synopsis">
+    <i>{{ movie.synopsis }}</i>
+</li>
+
+<li class="footer">
+                <table width="90%">
+                    <tr>
+                        <td><b>B</b> - back</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </li>
+
+</ul>
+{% endblock %}

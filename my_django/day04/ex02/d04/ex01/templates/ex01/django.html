@@ -1,0 +1,87 @@
+{% extends 'ex01/base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Ex01: Django, framework web.</title>
+{% endblock title %}
+
+{% block style %}
+	<link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}" />
+{% endblock style %}
+
+{% block content %}
+<div>
+	<h1>About the Django Software Foundation</h1>
+	<p>
+		Development of Django is supported by an independent foundation established
+		as a non-profit. Like most open-source foundations, the goal of
+		the Django Software Foundation is to promote, support, and advance its
+		open-source project: in our case, the Django Web framework.
+	</p>
+
+	<p>The foundation's goals are to:</p>
+
+	<ul>
+		<li>
+		Support development of Django by sponsoring sprints, meetups, gatherings
+		and community events.
+		</li>
+		<li>
+		Promote the use of Django among the world-wide Web development community.
+		</li>
+		<li>
+		Protect the intellectual property and the framework's long-term viability.
+		</li>
+		<li>Advance the state of the art in Web development.</li>
+	</ul>
+
+	<h2>Corporate Members</h2>
+	<p>
+		The Django Software Foundation would not be able to operate without the
+		generous financial support of our corporate members. If you are
+		interested in becoming a corporate member of the DSF.
+	</p>
+
+	<h2>Individual Members</h2>
+	<p>
+		Individual members are
+		appointed to the Django Software Foundation in recognition of their
+		contributions to the Django community. If you know of someone that you think
+		should be a member, including yourself, please fill out form
+		and the DSF membership will enter them into consideration.
+	</p>
+
+	<h2>Support for events</h2>
+	<p>
+		The DSF is happy to provide financial and other support to Django events
+		around the world. Find out how the DSF can support your conference or other event.
+	</p>
+
+	<h3>Code of Conduct requirement</h3>
+	<p>
+		The DSF will only endorse or support events which publish and adhere to a
+		suitable Code of Conduct.
+	</p>
+
+	<h2>Prizes</h2>
+	<p>
+		The DSF awards prizes to recognize the
+		contributions of volunteers in the Django community.
+	</p>
+
+	<h2>Board</h2>
+
+	<p>The board of directors are:</p>
+
+	<ul>
+		<li>Anna Makarudze, President</li>
+		<li>Aaron Bassett, Vice President</li>
+		<li>Chaim Kirby, Secretary</li>
+		<li>William Vincent, Treasurer</li>
+		<li>Kátia Nakamura</li>
+		<li>Mfon Eti-mfon</li>
+		<li>Žan Anderle</li>
+	</ul>
+</div>
+{% endblock content %}

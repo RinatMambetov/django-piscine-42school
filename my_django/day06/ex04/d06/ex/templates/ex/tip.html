@@ -1,0 +1,32 @@
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-outline-dark" type="submit">Submit</button>
+    </form>
+</div>
+{% for tip in tips %}
+    <hr>
+    <div>
+        <div>By: {{tip.author}} at {{tip.date}}</div>
+        <div>
+            <p>Content: {{tip.content}}</p>
+        </div>
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                <button class="btn btn-outline-dark" type="submit" name="up" value="{{tip.pk}}">
+                    {{tip.upvotes.count}}
+                </button>
+                <button class="btn btn-outline-dark" type="submit" name="down" value="{{tip.pk}}">
+                    {{tip.downvotes.count}}
+                </button>
+                {% if perms.ex.delete_tip or tip.author == request.user %}
+                <button class="btn btn-outline-dark" type="submit" name="delete" value="{{tip.pk}}">
+                    Delete
+                </button>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+{% endfor %}

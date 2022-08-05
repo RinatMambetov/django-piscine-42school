@@ -1,0 +1,16 @@
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-outline-dark" type="submit">Submit</button>
+    </form>
+</div>
+{% for tip in tips %}
+    <hr>
+    <div>
+        <div>By: {{tip.author}} at {{tip.date}}</div>
+        <div>
+            <p>Content: {{tip.content}}</p>
+        </div>
+    </div>
+{% endfor %}

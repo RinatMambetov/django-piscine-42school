@@ -1,0 +1,22 @@
+{% extends 'portfolio/base.html' %}
+
+{% load static %}
+
+{% block title %}
+	<title>My portfolio</title>
+{% endblock %}
+
+{% block content %}
+	<h1>It's my portfolio !</h1>
+	<img src="{% static 'portfolio/img0.jpg' %}" width="30%" alt="img0">
+	{% for project in projects %}
+		<h2>{{ project.title }}</h2>
+		<p>{{ project.description|safe }}</p>
+		<img src="{{ project.image.url }}" width="30%" alt="image">
+		<br>
+		{% if project.url %}
+			<a href="{{ project.url }}" target="_blank">Project Link</a>
+		{% endif %}
+		<hr>
+	{% endfor %}
+{% endblock %}

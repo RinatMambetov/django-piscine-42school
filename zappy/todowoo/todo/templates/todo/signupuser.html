@@ -1,0 +1,18 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+
+<h1 class="my-5">signup</h1>
+
+<h2>{{ error }}</h2>
+
+<form method="POST">
+
+	{% csrf_token %}
+	{{ form.as_p }}
+	<!-- as_p для разбиения формы на параграфы  -->
+	<button class="btn btn-outline-primary mt-3" type="submit">submit</button>
+
+</form>
+
+{% endblock %}

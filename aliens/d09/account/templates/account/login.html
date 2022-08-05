@@ -1,0 +1,112 @@
+{% extends "account/base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}      
+
+<div class="container mt-5 w-50">
+  <form id="contactForm" method="POST">
+     {% bootstrap_form form %}
+    <input type="submit" name="contact-submit" class="btn btn-success btn-lg" />
+  </form>
+    <div id="logged_in" class="d-flex justify-content-between">
+        <h2>Logged as <span class="username">{{ username }}</span></h2>
+        <button id="logout" class="btn btn-success btn-sm" type="submit">Logout</button>
+    </div>
+</div>
+
+{% block javascript %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+      $(document).ready(function () {
+        function getCookie(name) {
+          let cookieValue = null;
+          if (document.cookie && document.cookie !== '') {
+              const cookies = document.cookie.split(';');
+              for (let i = 0; i < cookies.length; i++) {
+                  const cookie = cookies[i].trim();
+                  // Does this cookie string begin with the name we want?
+                  if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                      cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return cookieValue;
+        }
+        const csrftoken = getCookie('csrftoken');
+        $.ajaxSetup({
+          headers: { "X-CSRFToken": csrftoken }
+        });
+        // send a GET request to build the list of todos
+        $.ajax({
+          url: '/account/check-login/',
+          type: 'GET',
+          dataType: 'json',
+          success: function (response) {
+              if (!response.error){
+                form = document.getElementById('contactForm');
+                form.style.display = 'none';
+                logged_in = document.getElementById('logged_in');
+                  logged_in.children[0].children[0].textContent = response.username;
+                  logged_in.style.display = 'inline';
+              }
+              else {
+                  form = document.getElementById('contactForm');
+                  form.style.display = 'inline';
+                logged_in = document.getElementById('logged_in');
+                logged_in.style.display = 'none';
+
+              }
+          }
+        })
+      $('#contactForm').submit(function () {
+          // создаем AJAX-вызов
+          $.ajax({
+             data: $(this).serialize(), // получаем данные формы
+              type: "POST", // GET или POST
+              url: "{% url 'login' %}",
+              // если успешно, то
+              success: function (response) {
+                if (!response.error) {
+                    form = document.getElementById('contactForm');
+                    form.style.display = 'none';
+                    logged_in = document.getElementById('logged_in');
+                    logged_in.children[0].children[0].textContent = response.username;
+                    logged_in.style.display = 'inline';
+                    console.log(logged_in);
+                }
+                else {
+                  alert(response.error);
+                  console.log(response.error)
+                }
+                },
+              // если ошибка, то
+              error: function (response) {
+                  // предупредим об ошибке
+                  alert(response.responseJSON.errors);
+                  console.log(response.responseJSON.errors)
+              }
+          });
+          return false;
+      });
+        $('div #logged_in').on('click', '#logout', function (event) {
+            var url = "logout/"
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                data: {},
+                success: function (response) {
+                    const form = document.getElementById('contactForm');
+                    form.style.display = 'inline';
+                    const logged_in = document.getElementById('logged_in');
+                    logged_in.style.display = 'none';
+                }
+            })
+        })
+      })
+  </script>
+{% endblock javascript %}
+
+{% endblock %}

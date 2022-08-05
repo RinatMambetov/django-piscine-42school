@@ -1,0 +1,21 @@
+{% extends 'screen.html' %}
+
+
+{% block screen_content_main %}
+    <div class="screen_content_main">
+        <div class="titlescreen">
+            <div class="options_title">
+                Game's options
+            </div>
+            <div class="titlescreen_button_a">
+                {{ buttons.A.text | default:"A - New Game"}}
+            </div>
+            <div class="titlescreen_button_b">
+                {{ buttons.B.text|default:"B - Load"}}
+            </div>
+            <div class="titlescreen_button_b">
+                start - cancel
+            </div>
+        </div>
+    </div>
+{% endblock %}

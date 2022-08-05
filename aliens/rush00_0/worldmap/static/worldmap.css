@@ -1,0 +1,43 @@
+.b {
+    pointer-events: none;
+}
+
+.map {
+    background: #78b930;
+    height: 190px;
+    width: 190px;
+}
+
+.bushes {
+    background-color: #00a305;
+    background-image: url("https://www.transparenttextures.com/patterns/basketball.png");
+}
+.movieman {
+    background-size: 275px;
+    display: block;
+    height: 14px;
+    margin-bottom: -20px;
+    background-repeat: repeat-x;
+    background-image: url(movieman.png);
+    animation: movieman 3s steps(20) infinite;
+}
+
+    .movieman:hover {
+        animation-play-state: paused;
+    }
+
+@keyframes movieman {
+
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -3025px;
+    }
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,154 @@
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.buttons_container {
+    background-color: lightgrey;
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.arrows {
+    display: flex;
+    width: 140px;
+    height: 140px;
+    background-color: lightgray;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #424040;
+    margin-right: 200px;
+    flex-direction: column;
+}
+
+.left_right_arrows {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.top_arrow {
+    /*transform: translateY(-20px);*/
+    transform: rotate(-135deg);
+}
+
+.left_arrow {
+    transform: translateX(-5px) rotate(-225deg);
+
+}
+
+.right_arrow {
+    transform: translateX(5px) rotate(-45deg);
+}
+
+.bottom_arrow {
+    transform: rotate(45deg);
+}
+
+.arrow {
+    border: solid white;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 3px;
+    width: 5px;
+    height: 5px;
+}
+
+.arrow_button {
+    height: 40px;
+    width: 40px;
+    border-radius: 100px;
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.main_buttons {
+    width: 200px;
+    height: 100px;
+    background-color: darkgray;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+    margin-right: 200px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+.select_button {
+    transform: rotate(-45deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 50px;
+}
+
+.start_button {
+    transform: rotate(-45deg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: 50px;
+}
+
+.select_button .main_button {
+    background-color: yellow;
+}
+.start_button .main_button {
+    background-color: gray;
+}
+
+.main_button {
+    width: 80px;
+    height: 25px;
+    border: 3px solid #424040;
+    border-radius: 100px;
+}
+
+.letter_buttons {
+    width: 140px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button_a {
+    margin-top: 10px;
+    transform: translate(30px, 10px);
+}
+
+.button_b {
+    margin-top: 10px;
+    transform: translate(-30px, 10px);
+}
+
+.letter_button {
+    background-color: red;
+    height: 50px;
+    width: 50px;
+    border-radius: 100px;
+    border: 3px solid #424040;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}

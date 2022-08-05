@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title | default:"Moviemon" }}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/screen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/title_screen.css' %}">
+    <link rel="stylesheet" href="{% static 'css/worldmap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/moviedex.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <link rel="stylesheet" href="{% static 'css/battle.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Koulen&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gaget">
+       {% csrf_token %}
+
+        <div class="gaget_content">
+            {%  block content %}
+                <div class="screen">
+
+                </div>
+            {% endblock %}
+            {% include 'buttons.html' %}
+        </div>
+    </div>
+</body>
+</html>

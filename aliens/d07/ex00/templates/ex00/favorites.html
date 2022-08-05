@@ -1,0 +1,26 @@
+{% extends 'ex00/base.html' %}
+{% block title %}Favorite{% endblock %}
+{% block header %}Favorite{% endblock %}
+
+{% block content %}
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Synopsis</th>
+            <th scope="col">Created</th>
+        </tr>
+      </thead>
+      <tbody>
+         {% for i in favorites %}
+            <tr>
+                <td>{{ i.article.title }}</td>
+                <td>{{ i.article.synopsis }}</td>
+                <td>{{ i.article.created }}</td>
+                <td><a href="/ex00/detail/{{ i.article.id }}/" ><button class="btn btn-primary">Read</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+        </table>
+{% endblock %}

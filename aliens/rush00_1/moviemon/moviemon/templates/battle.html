@@ -1,0 +1,22 @@
+{% extends 'screen.html' %}
+
+{% load static %}
+
+{% block screen_content_main %}
+    <div class="screen_content_main battle">
+        <div class="battle_header">
+            <div class="battle_title">{{ Title }}</div>
+            <div class="battle_rating">Danger LVL: {{ imdbRating }}</div>
+        </div>
+        <div class="battle_info">
+            <img class="battle_poster" src="{{ Poster }}">
+            <div class="battle_luck">This movie has {{ Luck }}% chance to get caught</div>
+            <div class="battle_movieballs">Movieballs: {{ Movieballs }}</div>
+        </div>
+        <div class="battle_text">{{ Battle_Text }}</div>
+        <div class="battle_hints">
+            <div class="battle_hint">A - Throw Movieball</div>
+            <div class="battle_hint">B - Return to Worldmap</div>
+        </div>
+    </div>
+{% endblock %}

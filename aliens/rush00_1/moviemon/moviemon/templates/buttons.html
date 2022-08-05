@@ -1,0 +1,64 @@
+
+<div class="buttons">
+    <div class="buttons_container">
+    <div class="arrows">
+        <div>
+            <form action="{{ buttons.arrow_top.link | default_if_none:'#' }}" method="post">
+                {% csrf_token %}
+                <button class="top_arrow arrow_button" {% if not buttons.arrow_top %}disabled{%endif%} type="submit">
+                    <i class="arrow"></i>
+                </button>
+            </form>
+        </div>
+        <div class="left_right_arrows">
+            <form action="{{ buttons.arrow_left.link | default_if_none:'#' }}" method="post">
+                {% csrf_token %}
+                <button class="left_arrow arrow_button" {% if not buttons.arrow_left %}disabled{%endif%} type="submit">
+                    <i class="arrow"></i>
+                </button>
+            </form>
+            <form action="{{ buttons.arrow_right.link | default_if_none:'#' }}" method="post">
+                {% csrf_token %}
+
+                <button class="right_arrow arrow_button" {% if not buttons.arrow_right %}disabled{%endif%} type="submit">
+                    <i class="arrow"></i>
+                </button>
+            </form>
+        </div>
+        <div>
+            <form action="{{ buttons.arrow_bottom.link | default_if_none:'#' }}" method="post">
+                {% csrf_token %}
+
+                <button class="bottom_arrow arrow_button" {% if not buttons.arrow_bottom %}disabled{%endif%} type="submit">
+                    <i class="arrow"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="main_buttons">
+        <div class="select_button">
+            <a class="main_button" href="{{ buttons.select.link | default_if_none:'#' }}"></a>
+            select
+        </div>
+        <div class="start_button">
+            <a class="main_button" href="{{ buttons.start.link | default_if_none:'#' }}"></a>
+            start
+        </div>
+    </div>
+    <div class="letter_buttons">
+        <div class="button_a"></div>
+            {% csrf_token %}
+            <form action="{{ buttons.A.link | default_if_none:'#' }}" method="{{ buttons.A.httpmethod | default:'get' }}">
+                            {% csrf_token %}
+                <button class="letter_button" {% if not buttons.A.active %}disabled{%endif%} type="submit">A</button>
+            </form>
+        </div>
+        <div class="button_b">
+            <form action="{{ buttons.B.link | default_if_none:'#' }}" method="{{ buttons.B.httpmethod | default:'get' }}">
+            {% csrf_token %}
+                <button class="letter_button" {% if not buttons.B.active %}disabled{%endif%} type="submit">B</button>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>

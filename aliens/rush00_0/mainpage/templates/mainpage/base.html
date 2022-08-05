@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}My site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script type="text/javascript" src="{% static 'button_events.js' %}"></script>
+    {% block style %}{% endblock %}
+</head>
+<body>
+<div class="gameboy">
+    <div class="screen-area">
+        <div class="display">
+            {% block content %}{% endblock %}
+        </div>
+        <div class="label">
+            <div class="title">Movie</div>
+            <div class="subtitle">
+                <span class="c">M</span><!--
+             --><span class="o1">O</span><!--
+             --><span class="l">N</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="credits">sgertrud & mazor</div>
+
+    <form class="controls" method="POST">
+        {% csrf_token %}
+        <div class="dpad">
+            <input class="up" id="UP" type="submit" name="KEY" value="UP">
+            <input class="right" id="RIGHT" type="submit" name="KEY" value="RIGHT">
+            <input class="down" id="DOWN" type="submit" name="KEY" value="DOWN">
+            <input class="left" id="LEFT" type="submit" name="KEY" value="LEFT">
+            <div class="middle"></div>
+        </div>
+        <div class="a-b">
+            <input class="b" id="B" type="submit" name="KEY" value="B">
+            <input class="a" id="A" type="submit" name="KEY" value="A">
+        </div>
+    </form>
+
+    <form class="start-select" method="POST">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <td><label class="select" for="SELECT">SELECT</label></td>
+            <td><label class="start" for="START">START</label></td>
+        </tr>
+        <tr>
+            <td> <input type="submit" id="SELECT" name="KEY" value="SELECT"></td>
+            <td> <input type="submit" id="START" name="KEY" value="START"> </td>
+        </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

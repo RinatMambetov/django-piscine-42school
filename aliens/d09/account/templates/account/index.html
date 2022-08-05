@@ -1,0 +1,185 @@
+{% extends 'base.html' %} {% block content %} {% load bootstrap3 %}
+
+<div>
+  {% if user.is_authenticated %}
+  <!-- Button trigger modal -->
+  <button
+    type="button"
+    class="btn btn-primary"
+    data-toggle="modal"
+    data-target="#createtip"
+  >
+    Create Tip!
+  </button>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="createtip"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="createtipLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header" style="display: flex; flex-direction: row">
+          <h5
+            class="modal-title inline"
+            style="width: 100%"
+            id="createtipLabel"
+          >
+            Create Tip!
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{% url 'tip' %}" method="post" class="form">
+          <div class="modal-body">
+            {% csrf_token %} {% bootstrap_form tipform %}
+          </div>
+          <div class="modal-footer">
+            {% buttons %}
+            <button type="submit" class="btn btn-primary">
+              {% bootstrap_icon "star" %} Submit
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            {% endbuttons %}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  {% endif %}
+
+  <ul class="list-group">
+    {% for tip in tips %}
+    <li class="list-group-item" style="margin-top: 10px; margin-bottom: 10px">
+      {% if user.is_authenticated %}
+      <form
+        action="{% url 'tip' %}"
+        method="post"
+        class="form"
+        style="display: none"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="put" id="_method" />
+        <input type="hidden" name="id" value="{{ tip.id }}" />
+        <input type="checkbox" hidden="true" name="type" id="type" checked />
+        <input
+          hidden="true"
+          type="submit"
+          class="btn btn-primary"
+          id="{{tip.id}}-upvote"
+        />
+      </form>
+      <form
+        action="{% url 'tip' %}"
+        method="post"
+        class="form"
+        style="display: none"
+      >
+        {% csrf_token %}
+        <input type="hidden" name="_method" value="put" id="_method" />
+        <input type="hidden" name="id" value="{{ tip.id }}" />
+        <input type="checkbox" hidden="true" name="type" id="type" />
+        <input
+          hidden="true"
+          type="submit"
+          class="btn btn-primary"
+          id="{{tip.id}}-downvote"
+        />
+      </form>
+      {% endif %}
+      <div>
+        <h5>
+          <button
+            type="button"
+            class="btn close"
+            data-toggle="modal"
+            data-target="#deletetip-{{ tip.id }}"
+          >
+            ×
+          </button>
+          <div
+            class="modal fade"
+            id="deletetip-{{ tip.id }}"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="deletetip-{{ tip.id }}Label"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div
+                  class="modal-header"
+                  style="display: flex; flex-direction: row"
+                >
+                  <h5
+                    class="modal-title inline"
+                    style="width: 100%"
+                    id="deletetip-{{ tip.id }}Label"
+                  >
+                    Delete Tip!
+                  </h5>
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form action="{% url 'tip' %}" method="post" class="form">
+                  {% csrf_token %} {% bootstrap_form tip.deleteform %}
+                  <div class="modal-footer">
+                    {% buttons %}
+                    <button type="submit" class="btn btn-primary">
+                      {% bootstrap_icon "star" %} Ok
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
+                    {% endbuttons %}
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          {{ tip.author }}
+        </h5>
+        <p>{{ tip.content }}</p>
+        <p>
+          <small>{{ tip.date }}</small>
+          <span onclick="document.getElementById('{{tip.id}}-upvote').click()"
+            >👍{{tip.up_votes.count}}</span
+          >
+          -
+          <span onclick="document.getElementById('{{tip.id}}-downvote').click()"
+            >👎{{tip.down_votes.count}}</span
+          >
+        </p>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  <div>{% endblock content %}</div>
+</div>

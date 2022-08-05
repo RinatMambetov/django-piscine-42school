@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Email sending form</title>
+        <script src="popup.js"></script>
+    </head>
+    <body>
+        <form>
+            <div>
+                Firstname: <input id="firstname" type="text" required/>
+            </div>
+            <div>
+                Name: <input id="name" type="text" required/>
+            </div>
+            <div>
+                Age: <input id="age" type="number" required/>
+            </div>
+            <div>
+                Phone: <input id="phone" type="tel" required/>
+            </div>
+            <div>
+                Email: <input id="email" type="email" required/>
+            </div>
+            <div>
+                <label for="student">Student at 42 ? :</label>
+		<input id="student" type="checkbox" />
+            </div>
+            <div>
+                <label for="gender_male">Male</label>
+                <input
+			id="gender_male"
+			name="gender"
+			value="Male"
+			type="radio"
+			checked
+                />
+                <label for="gender_female">Female</label>
+                <input
+			id="gender_female"
+			name="gender"
+			value="Female"
+			type="radio" />
+                <label for="gender_other">Other</label>
+                <input
+			id="gender_other"
+			name="gender"
+			value="Other"
+			type="radio" />
+            </div>
+            <button type="submit" onclick="displayFormContents()">
+                Submit
+            </button>
+        </form>
+    </body>
+</html>

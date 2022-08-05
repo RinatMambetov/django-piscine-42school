@@ -1,0 +1,60 @@
+.screen_content_main {
+    background: lightyellow;
+}
+
+.screen_content_right, .screen_content_left {
+    background: #77b277;
+}
+
+.battle {
+    position: relative;
+}
+
+.battle_header {
+    position: absolute;
+    left: 4vh;
+    top: 15vh;
+    line-height: 4vh;
+}
+.battle_title {
+    font-size: 3.5vh;
+}
+
+.battle_rating {
+    font-size: 3vh;
+    position: absolute;
+    right: 0;
+}
+
+.battle_info {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.battle_luck {
+    font-size: 2vh;
+}
+
+.battle_movieballs {
+    font-size: 2vh;
+    text-align: center;
+}
+
+.battle_text {
+    font-size: 2.5vh;
+    position: absolute;
+    bottom: 11vh;
+    left: 4vh;
+}
+
+.battle_hints {
+    font-size: 2vh;
+    line-height: 3vh;
+    position: absolute;
+    right: 1vh;
+    bottom: 1vh;
+}
+
+
+

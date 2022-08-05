@@ -1,0 +1,24 @@
+{% extends 'screen.html' %}
+
+
+{% block screen_content_main %}
+    <div class="screen_content_main">
+        <div class="moviedex_content">
+            <div class="moviedex_title">Moviedex</div>
+            {% for captured_movie in captured_movies %}
+                <div class="moviedex_elem {% if captured_movie.imdbID == selected_movie_id %} selected_img {% endif %}">
+                    <div class="moviedex_poster" >
+                        <img class="moviedex_poster_img" src="{{ captured_movie.Poster }}" alt="{{ captured_movie.Title }}">
+                    </div>
+                    <div class="moviedex_name">
+                        {{ captured_movie.Title }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="movidex_buttons">
+                <div>A - More information</div>
+                <div>select - Back</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

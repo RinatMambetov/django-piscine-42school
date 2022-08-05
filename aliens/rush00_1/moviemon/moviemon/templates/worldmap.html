@@ -1,0 +1,64 @@
+{% extends 'screen.html' %}
+
+{% load static %}
+
+{% block screen_content_left %}
+    <div class="screen_content_left">
+        <div class="worldmap_content_left" >
+            <div class="worldmap_content_left_title">
+                Monsters
+            </div>
+            <div class="worldmap_content_left_monsters">
+                Captured {{ map_data.captured }}
+            </div>
+            {% if action.type == 'monster' %}
+                <div class="worldmap_content_left_message">
+                    {{ action.message }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+
+
+{% block screen_content_main %}
+    <div class="screen_content_main">
+        <div class="worldmap_field" style="background-image: url('{% static "images/forest.png"%}');">
+            {% for row in map_data.field %}
+                <div class="worldmap_field_row">
+                    {% for cell in row %}
+                        <div class="worldmap_field_cell">
+                            {% if cell == 1 %}
+                                <div class="worldmap_field_cell_ash" style="background-image: url('{% static "images/ash.png"%}');"></div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block screen_content_right %}
+    <div class="screen_content_right">
+        <div class="worldmap_content_right">
+            <div class="worldmap_content_right_title">
+                Player
+            </div>
+            <div class="worldmap_content_right_strength">
+                Strength <br> {{ map_data.player_strength }}
+            </div>
+            <div class="worldmap_content_right_ball">
+                <div class="worldmap_content_right_ball_i" style="background-image: url('{% static "images/poke.png"%}');"></div>
+                <div class="worldmap_content_right_ball_c"> {{ map_data.pokeballs }} </div>
+            </div>
+            {% if action.type == 'ball' %}
+                <div class="worldmap_content_right_message">
+                    {{ action.message }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Todo</title>
+	{% load django_bootstrap5 %}
+	{% bootstrap_css %}
+</head>
+	<body>
+		<div class="container mt-5">
+			{% if user.is_authenticated %}
+
+				<h2 class="mb-3">logged in as <i>{{ user.username }}</i></h2>
+				<a class="btn btn-outline-primary" href="{% url 'createtodo' %}">create</a>
+				<a class="btn btn-outline-primary" href="{% url 'currenttodos' %}">current</a>
+				<a class="btn btn-outline-primary" href="{% url 'completedtodos' %}">completed</a>
+
+				<form method="POST" action="{% url 'logoutuser' %}">
+					{% csrf_token %}
+					<button class="btn btn-outline-primary mt-3 mb-5" type="submit">logout</button>
+				</form>
+
+			{% else %}
+
+				<a class="btn btn-outline-primary" href="{% url 'signupuser' %}">signup</a>
+				<a class="btn btn-outline-primary" href="{% url 'loginuser' %}">login</a>
+
+			{% endif %}
+
+			{% block content %}
+			{% endblock %}
+		</div>
+	</body>
+</html>

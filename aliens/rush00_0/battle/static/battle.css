@@ -1,0 +1,54 @@
+.up, .right, .left, .down, .start, .select {
+    pointer-events: none;
+}
+
+p {
+    font-size: 12px;
+    margin: 0
+}
+
+body {
+    position:relative;
+}
+
+.ball {
+    width:25px;
+    height:25px;
+    background:red;
+    border:3px solid #000;
+    border-radius:50%;
+    position:absolute;
+    animation: movement 3s linear forwards;
+    -webkit-animation: movement 3s linear forwards;
+    left:0;
+}
+@keyframes movement {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    75%{
+        opacity: 0;
+    }
+    100% {
+        left:100%;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes movement {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        left:100%;
+        opacity: 0;
+    }
+}

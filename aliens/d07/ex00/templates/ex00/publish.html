@@ -1,0 +1,13 @@
+{% extends 'ex00/base.html' %}
+{% load bootstrap5 %}
+{% block title %}Publish{% endblock %}
+{% block header %}Publish{% endblock %}
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+         {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary"> Publish </button>
+    </form>
+{% endblock %}
+
+

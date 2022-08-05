@@ -1,0 +1,20 @@
+{% extends 'screen.html' %}
+
+
+{% block screen_content_main %}
+    <div class="screen_content_main">
+       {% csrf_token %}
+        <div class="moviedex_content">
+            <div class="moviedex_title">Moviedex</div>
+            {% for savefile in savefiles %}
+                <div class="moviedex_elem {% if forloop.counter0 == selected_file_pos %} selected_img {% endif %}">
+                    <div class=" margin_left_60">{{ savefile.name|default:"Free" }}</div>
+                </div>
+            {% endfor %}
+            <div class="movidex_buttons">
+                <div>A - {{ buttons.A.text }}</div>
+                <div>B - {{ buttons.B.text|default:"Title screen" }} </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- chat/templates/chat/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Chat Rooms</title>
+</head>
+<body>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% for room in rooms %}
+        <a class="btn btn-primary" href="{% url 'room' room %}">{{ room }} </a>
+    {% endfor %}
+</body>
+</html>

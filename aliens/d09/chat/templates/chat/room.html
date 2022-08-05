@@ -1,0 +1,258 @@
+<!-- chat/templates/chat/room.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    {% load bootstrap3 %}
+    <title>Chat Room | {{ room_name }}</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% load static %}
+    <style>
+.titanic {
+    float: none;
+}
+
+.messages {
+    position: relative;
+    padding: 10px 10px 0 10px;
+    margin: 0 0 0 0;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.messages .message {
+    clear: both;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.messages .message.left .avatar {
+    background-color: #f55946;
+    float: left;
+}
+
+.messages .message.left .text_wrapper {
+    background-color: #ffe6cb;
+    margin-left: 20px;
+}
+
+.messages .message.left .text_wrapper::after, .messages .message.left .text_wrapper::before {
+    right: 100%;
+    border-right-color: #ffe6cb;
+}
+
+.messages .message.left .text {
+    color: #c48843;
+}
+
+.messages .message.right .avatar {
+    background-color: #6877fd;
+    float: right;
+}
+
+.messages .message.right .text_wrapper {
+    background-color: #c7eafc;
+    margin-right: 20px;
+    float: right;
+}
+
+.messages .message.right .text_wrapper::after, .messages .message.right .text_wrapper::before {
+    left: 100%;
+    border-left-color: #c7eafc;
+}
+
+.messages .message.right .text {
+    color: #45829b;
+}
+
+.messages .message .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    color: white;
+    padding-top: 18px;
+}
+
+.messages .message .text_wrapper {
+    display: inline-block;
+    padding: 20px;
+    border-radius: 6px;
+    width: calc(100% - 85px);
+    min-width: 100px;
+    position: relative;
+}
+
+.messages .message .text_wrapper::after, .messages .message .text_wrapper:before {
+    top: 18px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.messages .message .text_wrapper::after {
+    border-width: 13px;
+    margin-top: 0;
+}
+
+.messages .message .text_wrapper::before {
+    border-width: 15px;
+    margin-top: -2px;
+}
+
+.messages .message .text_wrapper .text {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+body {
+    font-size: 15px;
+}
+
+    </style>
+</head>
+<body>
+    {% for room in rooms %}
+        <a class="btn btn-primary" href="{% url 'room' room %}">{{ room }} </a>
+    {% endfor %}
+
+    {{ room_name|json_script:"room-name" }}
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Welcome to <strong>{{ room_name }}</strong> chat
+            </h1>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="user-list" class="list-group">
+                    <a href="" class="list-group-item disabled">
+                        <h4 class="list-group-item-heading">Users</h4>
+                        {# Users go here #}
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">Chat</h4>
+                    </div>
+                    <div>
+                        <ul id="messages" class="messages">
+                            {# Messages go here #}
+                        </ul>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="input-group">
+                            <input id="chat-input" type="text"
+                                   class="form-control input"
+                                   placeholder="Type your message here ..."
+                                   maxlength="500">
+                            <span class="input-group-btn">
+                            <button class="btn btn-info btn"
+                                    id="btn-send">
+                                Send</button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+let currentUser = '{{ request.user.username }}';
+let chatInput = $('#chat-input');
+let chatButton = $('#btn-send');
+let messageList = $('#messages');
+let userList = $('#user-list');
+
+function drawMessage(message) {
+    let position = 'left';
+    if (message.user === currentUser) position = 'right';
+    let messageItem = `<li class="message ${position}"> `;
+    if (message.user) {
+        messageItem = messageItem + `<div class="avatar">${message.user}</div>`
+    }
+    messageItem = messageItem + `
+                    <div class="text_wrapper">
+                        <div class="text">${message.body}<br>
+                    </div>
+                </div>
+            </li>`;
+    $(messageItem).appendTo('#messages');
+
+        userList.children('.user').remove();
+        for (let i = 0; i < message.user_list.length; i++) {
+            const userItem = `<a class="list-group-item user">${message.user_list[i]}</a>`;
+            $(userItem).appendTo('#user-list');
+        }
+        $('.user').click(function () {
+            userList.children('.active').removeClass('active');
+            let selected = event.target;
+            $(selected).addClass('active');
+            setCurrentRecipient(selected.text);
+        });
+
+    messageList.animate({scrollTop: messageList.prop('scrollHeight')});
+}
+
+$(document).ready(function () {
+
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/chat/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+        debugger;
+        const data = JSON.parse(e.data);
+        drawMessage(data.message);
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    chatInput.keypress(function (e) {
+        if (e.keyCode == 13)
+            chatButton.click();
+    });
+
+    chatButton.click(function () {
+        if (chatInput.val().length > 0) {
+            chatSocket.send(JSON.stringify({
+                'message': chatInput.val(),
+                'user': currentUser
+            }));
+            chatInput.val('');
+        }
+    });
+
+
+});
+
+
+    </script>
+    <script>
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+.right, .left, .start, .select {
+    pointer-events: none;
+}
+
+.slots-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.slot-item {
+    height: 30%;
+    width: 100%;
+    padding: 5px;
+    list-style-type: none;
+
+}
+
+.slot-name {
+    width: 100%;
+    height: 100%;
+    padding-top: 10px;
+    padding-left: 50px;
+    text-align: left;
+    vertical-align: bottom;
+    margin: 0;
+}
+
+.footer {
+    list-style-type: none;
+    height: 10%;
+    font-size: 10px;
+    text-align: left;
+}

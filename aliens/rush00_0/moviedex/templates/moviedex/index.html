@@ -1,0 +1,39 @@
+{% extends "mainpage/base.html" %}
+{% load static %}
+
+{% block title %}Moviedex{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'moviedex/moviedex.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <ul class="moviedex-container">
+        {% for movie in display_movies %}
+            <li class="moviedex-poster">
+            {% if no_catched and movie.i == 1 %}
+                <div class="moviedex-empty">No caught Moviemons</div>
+            {% endif %}
+            {% if movie.movie %}
+                <img class="poster"
+                     align="left"
+                     src="{{ movie.movie.poster_url}}"
+                     alt="{{ movie.movie.title }}"
+                     height="100%"
+                     {% if movie.i != 1 %}style="filter: grayscale(50%) blur(2px)"{% endif %}
+                >
+                <div class="movie-title">{{ movie.movie.title }}</div>
+            {% endif %}
+            </li>
+        {% endfor %}
+            <li class="footer">
+                <table width="90%">
+                    <tr>
+                        <td><b>A</b> - more information</td>
+                        <td><b>SELECT</b> - back</td>
+                    </tr>
+                </table>
+            </li>
+    </ul>
+{% endblock %}

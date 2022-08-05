@@ -1,0 +1,68 @@
+li {
+    list-style-type: none;
+}
+
+.right, .left, .start, .up, .down, .select, .a {
+    pointer-events: none;
+}
+
+.moviedex-poster {
+    list-style-type: none;
+    text-align: left;
+    ;
+}
+
+.detail-container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.detail-poster {
+    height: 60%;
+    width: 90%;
+    padding: 5px;
+}
+
+.movie-title {
+    padding-top: 5px;
+    padding-left: 75px;
+    height: 25%;
+    width: 100%;
+    text-align: left;
+
+    font-size: 14px;
+    font-family: "PT Sans";
+    font-weight: normal;
+}
+
+.movie-persons {
+    padding-top: 5px;
+    padding-left: 75px;
+    height: 20%;
+    width: 100%;
+    text-align: left;
+    font-size: 11px;
+    font-family: "PT Sans";
+}
+
+.movie-synopsis {
+    height: 30%;
+    padding: 5px;
+    text-align: left;
+    padding-top: 5px;
+    font-size: 12px;
+    font-family: Times;
+    font-family: "PT Sans";
+}
+
+.footer {
+    list-style-type: none;
+    height: 10%;
+    font-size: 10px;
+    text-align: left;
+}
+
+

@@ -1,0 +1,23 @@
+{% extends 'screen.html' %}
+
+
+{% block screen_content_main %}
+    <div class="screen_content_main">
+        <div class="detail_main">
+            <div class="detail_title">{{ movie.Title }}</div>
+            <div class="detail_content">
+                <div class="detail_left">
+                    <img class="detail_poster" src="{{ movie.Poster }}" alt="{{ movie.Title }}">
+                </div>
+                <div class="detail_right">
+                    <div class="detail_right_director">Director: {{ movie.Director }}</div>
+                    <div class="detail_right_year">Year: {{ movie.Year }}</div>
+                    <div class="detail_right_rating">Rating: {{ movie.rawRating }}</div>
+                    <div class="detail_right_actors">Actors: {{ movie.Actors }}</div>
+                    <div class="detail_right_plot">Plot: {{ movie.Plot }}</div>
+                </div>
+            </div>
+            <div class="detail_legend">B - Back</div>
+        </div>
+    </div>
+{% endblock %}

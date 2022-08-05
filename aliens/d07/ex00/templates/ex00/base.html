@@ -1,0 +1,17 @@
+{% load bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Title{% endblock %}</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body style="padding: 10px;">
+    <h1 class="display-1">{% block header %}{% endblock %}</h1>
+    {% include 'ex00/nav.html' %}
+    {% bootstrap_messages  %}
+        {% block content %}
+        {% endblock %}
+</body>
+</html>

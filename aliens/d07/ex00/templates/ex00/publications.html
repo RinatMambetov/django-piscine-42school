@@ -1,0 +1,26 @@
+{% extends 'ex00/base.html' %}
+{% block title %}Publications{% endblock %}
+{% block header %}Publications{% endblock %}
+
+{% block content %}
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Synopsis</th>
+            <th scope="col">Created</th>
+        </tr>
+      </thead>
+      <tbody>
+         {% for i in publics %}
+            <tr>
+                <td>{{ i.title }}</td>
+                <td>{{ i.synopsis }}</td>
+                <td>{{ i.created }}</td>
+                <td><a href="/ex00/detail/{{ i.id }}/" ><button class="btn btn-primary">Read</button></a>
+                </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+        </table>
+{% endblock %}

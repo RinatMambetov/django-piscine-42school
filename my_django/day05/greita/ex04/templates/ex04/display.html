@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <title>Display</title>
+    </head>
+    <body>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th>title</th>
+                    <th>episode_nb</th>
+                    <th>opening_crawl</th>
+                    <th>director</th>
+                    <th>producer</th>
+                    <th>release_date</th>
+                </tr>
+                {% for movie in movies %}
+                <tr>
+                    <td>{{ movie.0 }}</td>
+                    <td>{{ movie.1 }}</td>
+                    <td>{{ movie.2 }}</td>
+                    <td>{{ movie.3 }}</td>
+                    <td>{{ movie.4 }}</td>
+                    <td>{{ movie.5 }}</td>
+                </tr>
+                {% endfor %}
+            </toby>
+        </table>
+    </body>
+</html>
